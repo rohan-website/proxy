@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>Mini Browser</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       margin: 0;
@@ -13,54 +14,87 @@
       flex-direction: column;
       height: 100vh;
     }
+
     .toolbar {
       padding: 8px;
       background: #222;
       display: flex;
       gap: 6px;
+      align-items: center;
     }
+
     input {
       flex: 1;
-      padding: 6px;
+      padding: 8px;
       border-radius: 4px;
       border: 1px solid #555;
       background: #333;
       color: #eee;
+      font-size: 15px;
     }
+
     button {
-      padding: 6px 12px;
+      padding: 8px 14px;
       background: #444;
       color: #eee;
-      border: 0;
+      border: none;
       border-radius: 4px;
       cursor: pointer;
+      transition: background 0.2s;
+      font-size: 15px;
     }
+
+    button:hover {
+      background: #555;
+    }
+
     iframe {
       flex: 1;
       border: 0;
+      width: 100%;
     }
   </style>
 </head>
 <body>
   <div class="toolbar">
-    <input id="url" placeholder="Enter URL" />
+    <input id="url" placeholder="Enter URL (e.g. example.com)" />
     <button onclick="go()">Go</button>
   </div>
+
   <iframe id="view"></iframe>
 
   <script>
-    // Replace with your Pi's local IP or ngrok URL
+    // 👇 Replace this with your ngrok HTTPS URL (from ngrok output)
     const PROXY = "https://joziah-ungrudging-dian.ngrok-free.dev/proxy?url=";
 
     function go() {
       let url = document.getElementById("url").value.trim();
-      if(!/^https?:\/\//.test(url)) url = "https://" + url;
-      document.getElementById("view").src = PROXY + encodeURIComponent(url);
+      if (!url) return;
+
+      // Automatically add https:// if missing
+      if (!/^https?:\/\//i.test(url)) {
+        url = "https://" + url;
+      }
+
+      const iframe = document.getElementById("view");
+      iframe.src = PROXY + encodeURIComponent(url);
+
+      // Save last visited URL for next time
+      localStorage.setItem("lastURL", url);
     }
 
-    // Optional: press Enter to load
-    document.getElementById("url").addEventListener("keyup", function(e) {
+    // Allow pressing Enter to go
+    document.getElementById("url").addEventListener("keyup", e => {
       if (e.key === "Enter") go();
+    });
+
+    // Restore last visited site on load
+    window.addEventListener("load", () => {
+      const last = localStorage.getItem("lastURL");
+      if (last) {
+        document.getElementById("url").value = last;
+        document.getElementById("view").src = PROXY + encodeURIComponent(last);
+      }
     });
   </script>
 </body>
