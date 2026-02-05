@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Proxy Browser (GitHub Pages Ready)</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="app__header">
+        <div>
+          <h1>Proxy Browser</h1>
+          <p>Load websites through a built-in proxy directly from this page.</p>
+        </div>
+        <div class="status" id="status" aria-live="polite"></div>
+      </header>
+
+      <form class="app__form" id="proxy-form">
+        <label class="app__label" for="url-input">Website URL</label>
+        <div class="app__controls">
+          <input
+            id="url-input"
+            name="url"
+            type="url"
+            placeholder="https://example.com"
+            required
+            autocomplete="off"
+          />
+          <button type="submit">Open</button>
+        </div>
+        <p class="app__help">
+          Tip: Enter any public URL. The page loads through a CORS-friendly proxy, so it can run entirely on GitHub Pages.
+        </p>
+      </form>
+
+      <section class="viewer">
+        <iframe
+          id="viewer-frame"
+          title="Proxy browser view"
+          sandbox="allow-scripts allow-forms allow-modals allow-popups allow-popups-to-escape-sandbox"
+        ></iframe>
+      </section>
+    </main>
+
+    <script src="app.js" type="module"></script>
+  </body>
+</html>

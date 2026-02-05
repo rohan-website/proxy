@@ -1,0 +1,158 @@
+:root {
+  color-scheme: light dark;
+  font-family: "Inter", system-ui, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  background-color: #f6f7fb;
+  color: #1b1e27;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #ffffff, #eef1f7 60%, #e4e8f2);
+}
+
+.app {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 24px 56px;
+  display: grid;
+  gap: 24px;
+}
+
+.app__header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.app__header h1 {
+  margin: 0;
+  font-size: clamp(2rem, 3vw, 2.75rem);
+}
+
+.app__header p {
+  margin: 0;
+  color: #4f566b;
+}
+
+.status {
+  min-height: 1.25rem;
+  font-weight: 600;
+  color: #2e5bff;
+}
+
+.app__form {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 12px 30px rgba(28, 40, 74, 0.08);
+  display: grid;
+  gap: 12px;
+}
+
+.app__label {
+  font-weight: 600;
+}
+
+.app__controls {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+}
+
+.app__controls input {
+  border-radius: 10px;
+  border: 1px solid #ccd2e0;
+  padding: 12px 14px;
+  font-size: 1rem;
+  width: 100%;
+}
+
+.app__controls button {
+  border: none;
+  border-radius: 10px;
+  padding: 12px 18px;
+  font-weight: 600;
+  background: #2e5bff;
+  color: white;
+  cursor: pointer;
+}
+
+.app__controls button:hover {
+  background: #2146d7;
+}
+
+.app__help {
+  margin: 0;
+  color: #6c7386;
+  font-size: 0.95rem;
+}
+
+.viewer {
+  border-radius: 18px;
+  overflow: hidden;
+  background: #11131a;
+  min-height: 70vh;
+  box-shadow: 0 16px 40px rgba(17, 19, 26, 0.25);
+}
+
+.viewer iframe {
+  width: 100%;
+  height: 70vh;
+  border: none;
+  background: white;
+}
+
+@media (max-width: 720px) {
+  .app__controls {
+    grid-template-columns: 1fr;
+  }
+
+  .app__controls button {
+    width: 100%;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    background-color: #0d0f15;
+    color: #f4f5f8;
+  }
+
+  body {
+    background: radial-gradient(circle at top, #181c27, #0d0f15 60%, #07080c);
+  }
+
+  .app__header p {
+    color: #9aa3bb;
+  }
+
+  .status {
+    color: #9db0ff;
+  }
+
+  .app__form {
+    background: #161a24;
+    box-shadow: none;
+  }
+
+  .app__controls input {
+    background: #0f131c;
+    color: #f4f5f8;
+    border-color: #2a3142;
+  }
+
+  .app__controls button {
+    background: #4d6bff;
+  }
+
+  .viewer {
+    background: #0b0d14;
+  }
+}
