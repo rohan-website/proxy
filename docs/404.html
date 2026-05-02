@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Proxy Browser — Page Not Found</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="app__header">
+        <div>
+          <h1>Page not found</h1>
+          <p>This GitHub Pages URL did not match a file, so we can send you back to the proxy browser.</p>
+        </div>
+        <div class="status" id="status" aria-live="polite"></div>
+      </header>
+      <section class="viewer viewer--empty">
+        <div class="empty-state">
+          <p>The requested path is missing.</p>
+          <p><a id="home-link" href="./index.html">Return to the proxy browser</a></p>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const status = document.getElementById("status");
+      const homeLink = document.getElementById("home-link");
+      const segments = window.location.pathname.split("/").filter(Boolean);
+      const repoBase = segments.length > 0 ? `/${segments[0]}/` : "/";
+      const indexUrl = new URL("index.html", `${window.location.origin}${repoBase}`);
+      homeLink.href = indexUrl.toString();
+      status.textContent = `Missing path: ${window.location.pathname}`;
+    </script>
+  </body>
+</html>
