@@ -1,17 +1,24 @@
 # Proxy Browser (GitHub Pages)
 
-This repo hosts a lightweight browser-like UI that loads sites through a CORS-friendly proxy. It is designed to run entirely on GitHub Pages with no downloads.
+This repository hosts a lightweight browser-like UI that loads websites through a CORS-friendly proxy and runs fully in the browser.
 
-## Deploy on GitHub Pages
+## Quick fix for GitHub Pages 404
 
-1. Push this repository to GitHub.
-2. In **Settings → Pages**, set **Source** to `Deploy from a branch`.
-3. Choose the branch containing this code and select the **/docs** folder.
-4. Save. Your site will be available at the GitHub Pages URL shown in the Pages settings.
+If GitHub Pages shows:
 
-> The project includes both root-level files and a `docs/` copy, so it can work whether Pages is configured for `/ (root)` or `/docs`.
->
-> If you still see a 404 page after pushing, double-check that **Settings → Pages** is pointing at the branch and folder you actually published.
+> 404 — File not found
+
+it usually means Pages is not publishing from the same place your site files are stored.
+
+Use this exact setup:
+
+1. Push this repo to GitHub.
+2. Go to **Settings → Pages**.
+3. Under **Build and deployment**, set **Source** to **GitHub Actions**.
+4. Keep/enable the included workflow at `.github/workflows/pages.yml`.
+5. Push a commit (or run the workflow manually from the **Actions** tab).
+
+This workflow publishes the static site from the `docs/` folder, so your Pages URL always gets an `index.html` and `404.html`.
 
 ## Local preview
 
