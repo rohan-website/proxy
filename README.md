@@ -9,7 +9,9 @@ This repo hosts a lightweight browser-like UI that loads sites through a CORS-fr
 3. Choose the branch containing this code and select the **/docs** folder.
 4. Save. Your site will be available at the GitHub Pages URL shown in the Pages settings.
 
-> The project includes a `docs/` copy of the site so Pages can serve it directly from that folder. If you prefer the root, update Pages to serve from `/` instead.
+> The project includes both root-level files and a `docs/` copy, so it can work whether Pages is configured for `/ (root)` or `/docs`.
+>
+> If you still see a 404 page after pushing, double-check that **Settings → Pages** is pointing at the branch and folder you actually published.
 
 ## Local preview
 

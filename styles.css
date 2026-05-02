@@ -156,3 +156,26 @@ body {
     background: #0b0d14;
   }
 }
+
+
+.viewer--empty {
+  min-height: 40vh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
+.empty-state {
+  padding: 24px;
+}
+
+.empty-state a {
+  color: #2e5bff;
+  font-weight: 600;
+}
+
+@media (prefers-color-scheme: dark) {
+  .empty-state a {
+    color: #9db0ff;
+  }
+}
